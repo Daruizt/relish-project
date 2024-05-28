@@ -1,0 +1,21 @@
+{
+  "singleQuote": true,
+  "trailingComma": "all",
+  "useSpaces": true,
+  "tabWidth": 4,
+  "bracketSameLine": true,
+  "max-len": [
+    "error",
+    {
+      "code": 120,
+      "tabWidth": 4,
+      "ignoreComments": true,
+      "ignoreTrailingComments": true,
+      "ignoreUrls": true,
+      "ignoreStrings": true,
+      "ignoreTemplateLiterals": true,
+      "ignoreRegExpLiterals": true,
+      "ignorePattern": "^\\s*var\\s.+=\\s*require\\s*\\("
+    }
+  ]
+}
