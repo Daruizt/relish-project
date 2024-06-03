@@ -28,7 +28,7 @@ export class AppController {
         );
     }
 
-    @Get('/')
+    @Get()
     getHelloWorldController() {
         return 'hello World';
     }
