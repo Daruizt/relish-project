@@ -2,7 +2,7 @@ import { Controller, DefaultValuePipe, Get, Query } from '@nestjs/common';
 import { AppService } from './services/app.service';
 import { ApiQuery } from '@nestjs/swagger';
 
-@Controller('/v1')
+@Controller()
 export class AppController {
     constructor(private readonly appService: AppService) {}
 
@@ -26,5 +26,10 @@ export class AppController {
             parseInt(limit),
             parseInt(offset),
         );
+    }
+
+    @Get('/')
+    getHelloWorldController() {
+        return 'hello World';
     }
 }
