@@ -1,12 +1,30 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, DefaultValuePipe, Get, Query } from '@nestjs/common';
 import { AppService } from './services/app.service';
+import { ApiQuery } from '@nestjs/swagger';
 
-@Controller()
+@Controller('/v1')
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+    constructor(private readonly appService: AppService) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
-  }
+    @ApiQuery({ name: 'title', required: false })
+    @ApiQuery({ name: 'album.title', required: false })
+    @ApiQuery({ name: 'album.user.email', required: false })
+    @ApiQuery({ name: 'limit', required: false })
+    @ApiQuery({ name: 'offset', required: false })
+    @Get('/externalapi/photos')
+    getPhotosController(
+        @Query('title') title: string,
+        @Query('album.title') albumTitle: string,
+        @Query('album.user.email') userEmail: string,
+        @Query('limit', new DefaultValuePipe('25')) limit: string,
+        @Query('offset', new DefaultValuePipe('1')) offset: string,
+    ) {
+        return this.appService.getPhotosService(
+            title,
+            albumTitle,
+            userEmail,
+            parseInt(limit),
+            parseInt(offset),
+        );
+    }
 }
