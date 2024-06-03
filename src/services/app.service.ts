@@ -1,5 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { filterPhotos } from '@relish/helpers/filter-photos.helper';
+import { paginationPhotos } from '@relish/helpers/pagination-photos.helper';
 import { IAppRepository } from '@relish/interfaces/repositories/app-repository.interface';
 import { IAlbum } from '@relish/interfaces/types/album-response-axios.type';
 import { IResponseExternalApi } from '@relish/interfaces/types/external-api-response.type';
@@ -41,13 +42,12 @@ export class AppService {
             userEmail,
         );
 
-        const limitParam = limit || 25;
-        const offsetParam = offset || 0;
-        const paginatedPhotos = filterElement.slice(
-            offsetParam,
-            offsetParam + limitParam,
+        const paginationArray: IPhotoResponse[] = paginationPhotos(
+            filterElement,
+            limit,
+            offset,
         );
 
-        return { limit: limit, offset: offset, data: paginatedPhotos };
+        return { limit: limit, offset: offset, data: paginationArray };
     }
 }
