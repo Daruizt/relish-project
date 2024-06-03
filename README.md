@@ -75,6 +75,9 @@ $ https://relish-project-de101f4ddaf6.herokuapp.com/externalapi/photos
 
 ```
 
+## Reminder
+
+Al consultar la api se tarda un momento en volver a levantar la instancia por lo que hay que enviar varias peticiones hasta que el api responda.
 
 ## Support
 
