@@ -7,7 +7,9 @@ export default () => {
         },
         external: {
             relish: {
-                url: process.env.RELISH_API_URL,
+                url:
+                    process.env.RELISH_API_URL ||
+                    'https://jsonplaceholder.typicode.com',
             },
         },
     };
